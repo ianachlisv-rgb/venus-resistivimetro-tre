@@ -1,0 +1,30 @@
+id,grupo,descripcion,parte,cantidad,precio_unitario_base_usd,total_bajo_usd,total_base_usd,total_alto_usd,evidencia,fuente,nota
+R1,Receptor aislado,ADC 32 bits sigma-delta,ADS1262IPWR (TI),1,20.9,16.71,20.9,21.53,V,Digi-Key (US) 1 pc $20.90; 10 pcs $16.71,Entrada diferencial con PGA; lee M-N
+R2,Receptor aislado,Aislador digital 4 canales (SPI),ISO7741DWR (TI),2,3.09,2.84,6.18,6.18,V,Mouser $3.09 (1 pc); LCSC $1.42,"SCLK/DIN/CS/DOUT y DRDY/START, 5 kVrms"
+R3,Receptor aislado,DC-DC aislado 5 V 1 W,R1SX-0505-R (Recom),2,4.28,8.56,8.56,8.56,V,Digi-Key $4.28,Alimentación flotante del ADC y del aislador
+R4,Receptor aislado,"Protección de entrada y polarización (R 0.1 %, 10 MΩ, BAV199, TVS)",varios,1,8.0,4.0,8.0,15.0,E,Estimado,"Resistencias serie, camino de polarización de modo común"
+T1,Transmisor,"Módulo boost ZVS 8-32 V a 45-390 V, 40 W",Módulo genérico YH11068A,1,12.23,3.69,12.23,12.23,V,eBay $3.69; Newegg 3 pzs $36.69,No aislado; reportes de fallas de condensadores
+T2,Transmisor,Puente H de polaridad (4 canales PhotoMOS),AQW214 (Panasonic),2,2.95,5.48,5.9,8.54,V,"Future $2.95 (1), $2.74 (200+); Farnell EUR 3.88","100 mA, 400 V, 2 canales por encapsulado"
+T3,Transmisor,ADC 16 bits de corriente (breakout) + shunt 10 Ω 0.1 %,ADS1115 + shunt,1,12.49,11.25,12.49,24.75,V,Amazon $9.75-9.99; Jameco $19.75; shunt estimado,Mide I en el retorno del puente H
+T4,Transmisor,"Condensador film 4.7 µF 400 V, sangrador, divisor HV, resistencia limitadora",varios,1,18.0,10.0,18.0,34.0,E,Estimado,Descarga del bus a <60 V en pocos segundos
+T5,Transmisor,"Fusibles (15 A entrada, HV de salida) y portafusibles",varios,1,11.0,6.0,11.0,20.0,E,Estimado,
+T6,Transmisor,"Paro de emergencia NC, llave, baliza HV",varios,1,25.0,12.0,25.0,45.0,E,Estimado,Interrumpe el habilitador del boost
+S1,Conmutación,PhotoMOS doble 400 V / 100 mA,AQW214 (Panasonic),96,2.95,263.04,283.2,409.92,V,"Future $2.95 (1), $2.74 (200+); Farnell EUR 3.88","192 canales = 48 electrodos x 4 roles (A, B, M, N)"
+S2,Conmutación,"Registro de desplazamiento 8 bits, salida drenaje abierto",TPIC6B595N (TI),24,1.46,29.28,35.04,54.0,V,"LCSC $1.46 (1), $1.22 (10+); TME $2.25 (20+)",Maneja los LED de los PhotoMOS (5 mA)
+S3,Conmutación,"Resistencias 680 Ω, condensadores, cabezales y conectores de cinta",varios,1,28.0,14.0,28.0,55.0,E,Estimado,
+S4,Conmutación,PCB de conmutación 160x90 mm (2 piezas),fabricante de PCB,1,60.0,25.0,60.0,120.0,E,Estimado,Separación de aislamiento para 200 V
+S5,Conmutación,PCB principal receptor + transmisor (2 piezas),fabricante de PCB,1,40.0,20.0,40.0,90.0,E,Estimado,Ranura de aislamiento bajo el receptor
+C1,Control y energía,Computador monoplaca,Raspberry Pi 4B 2 GB,1,67.5,15.0,67.5,77.5,V,Lista oficial 12-oct-2026: Pi 4B 2 GB $67.50; Pi 5 2 GB $77.50; Zero 2 W $15 (agotada),"Controla SPI/I2C, Wi-Fi para la tableta"
+C2,Control y energía,microSD 32 GB industrial,varios,1,12.0,8.0,12.0,25.0,E,Estimado,
+C3,Control y energía,Pantalla OLED de estado,varios,1,10.0,6.0,10.0,20.0,E,Estimado,
+C4,Control y energía,Batería LiFePO4 12.8 V 20 Ah con BMS,varias marcas,1,59.99,49.99,59.99,179.0,V,eBay $49.99; reach.dog $59.99; Battle Born $179,Autonomía muy superior a lo necesario
+C5,Control y energía,Cargador LiFePO4 14.6 V 5 A,varios,1,30.0,20.0,30.0,50.0,E,Estimado,
+C6,Control y energía,"Convertidor reductor 12 a 5 V / 5 A, cableado, conectores de potencia",varios,1,25.0,15.0,25.0,45.0,E,Estimado,
+M1,Mecánica,Maleta Pelican 1450 con espuma,Pelican 1450-000-110,1,194.99,169.57,194.99,196.95,V,CDW $169.99 / $194.99; CDWG $169.57,"Interior 371 x 258 x 152 mm, IP67"
+M2,Mecánica,2 conectores circulares IP67 de 24 polos + borne de tierra,varios,1,110.0,70.0,110.0,200.0,E,Estimado,
+M3,Mecánica,"Panel de policarbonato, separadores, prensaestopas, barniz, etiquetas",varios,1,30.0,15.0,30.0,60.0,E,Estimado,
+F1,Campo (tendido),"Cable multiconductor 24 x 0.5 mm² apantallado, 500 V, 200 m",HELUKABEL 16015 (LiY-CY),200,5.78,500.0,1156.0,1374.0,V,Buerklin EUR 6.2475/m con IVA (EUR 5.25 sin IVA); bajo = estimado local,Dos tramos de ~100 m desde el centro
+F2,Campo (tendido),Derivaciones por electrodo (empalme IP67 + pinza),varios,48,4.5,120.0,216.0,384.0,E,Estimado,
+F3,Campo (tendido),Electrodos de acero inoxidable 316 (48 + 4 de repuesto),varios,52,5.0,104.0,260.0,468.0,E,Estimado,
+F4,Campo (tendido),Bolsa de transporte y carretes,varios,1,80.0,40.0,80.0,150.0,E,Estimado,
+F5,Campo (tendido),Caja de calibración (resistencias de precisión 0.1 %),varios,1,40.0,20.0,40.0,80.0,E,Estimado,
