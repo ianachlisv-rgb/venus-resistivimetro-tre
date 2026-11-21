@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="Ian A. Sandoval-Valderrábano">
-<title>Resistivímetro TRE de bajo costo: paper, modelo 3D y costos</title>
+<meta name="description" content="VENUS: propuesta de diseño, modelado analítico y análisis de costos de un resistivímetro multielectrodo de bajo costo para tomografía de resistividad eléctrica (sin hardware construido).">
+<title>VENUS: resistivímetro de bajo costo para TRE (paper, modelo 3D y costos)</title>
 <style>
 :root{color-scheme:light;--bg:#f6f5f1;--surf:#fcfcfb;--surf2:#f1f0ec;--ink:#0b0b0b;--ink2:#52514e;--muted:#6b6a66;--line:#d9d7d0;--accent:#2a78d6;--accentbg:#e8f0fb;--okbg:#e5f4ec;--ok:#0b6b3a;--warnbg:#fff3d6;--warn:#8a5a00;--badbg:#fde8e6;--bad:#a3231e;--chipbg:#ecebe6;--v-ink:#0b0b0b;--v-ink2:#52514e;--v-line:#cfcdc6;--v-surf:#fcfcfb;--v-box:#f3f2ee;--v-power:#2a78d6;--v-hv:#eb6834;--v-analog:#1baf7a;--v-digital:#6250d6;--v-switch:#eda100;--v-case:#8a8983;--v-s1:#2a78d6;--v-s2:#eb6834;--v-s3:#1baf7a;}
 :root[data-theme=dark]{color-scheme:dark;--bg:#121211;--surf:#1a1a19;--surf2:#222221;--ink:#f0efec;--ink2:#c3c2b7;--muted:#a09f96;--line:#3a3a38;--accent:#5b9cf0;--accentbg:#1c2a3f;--okbg:#14301f;--ok:#7fd9a1;--warnbg:#3a2e0e;--warn:#f2c660;--badbg:#3d1a18;--bad:#ff9a94;--chipbg:#2c2c2a;--v-ink:#f0efec;--v-ink2:#c3c2b7;--v-line:#3b3b39;--v-surf:#1a1a19;--v-box:#242423;--v-power:#3987e5;--v-hv:#d95926;--v-analog:#199e70;--v-digital:#9085e9;--v-switch:#c98500;--v-case:#8a8983;--v-s1:#3987e5;--v-s2:#d95926;--v-s3:#199e70;}
@@ -168,7 +169,7 @@ textarea#c-csvta{width:100%;height:120px;font:12px monospace;margin-top:8px}
 </head>
 <body>
 <header class="top"><div class="topin">
-  <div class="brand">Resistivímetro de bajo costo para TRE (tendidos de 200 m)<small>Propuesta de diseño: paper, modelo 3D interior y calculadoras · Ian A. Sandoval-Valderrábano</small></div>
+  <div class="brand">VENUS · Resistivímetro de bajo costo para TRE (tendidos de 200 m)<small>Propuesta de diseño: paper, modelo 3D interior y calculadoras · Ian A. Sandoval-Valderrábano</small></div>
   <nav class="tabs" aria-label="Secciones">
     <button class="tab" data-tab="resumen" aria-selected="true">Resumen</button>
     <button class="tab" data-tab="3d" aria-selected="false">Modelo 3D</button>
@@ -177,12 +178,12 @@ textarea#c-csvta{width:100%;height:120px;font:12px monospace;margin-top:8px}
   </nav>
   <button id="theme" aria-pressed="false">Tema oscuro</button>
 </div></header>
-<div class="banner"><div><b>Es una propuesta de diseño, no un equipo construido.</b> Todo son cálculos sin validar, y solo 12 de las 29 piezas tienen precio visto en una tienda; el resto son estimaciones.</div></div>
+<div class="banner"><div><b>VENUS es una propuesta de diseño, no un equipo construido.</b> Todo son cálculos sin validar, y solo 12 de las 29 piezas tienen precio visto en una tienda; el resto son estimaciones.</div></div>
 <main>
 <section class="panel" id="p-resumen">
 <div class="res">
-<h2>Un equipo propio para ver el subsuelo, por unos 2 900 USD</h2>
-<p class="lead">Es el diseño de una versión barata de equipos como el ARES: un aparato portátil que mide cómo conduce la electricidad el suelo a lo largo de una línea de unos 190 m, para dibujar un corte de lo que hay debajo (agua, roca, cavidades).</p>
+<h2>VENUS: un equipo propio para ver el subsuelo, por unos 2 900 USD</h2>
+<p class="lead">VENUS es el diseño de una versión barata de equipos como el ARES: un aparato portátil que mide cómo conduce la electricidad el suelo a lo largo de una línea de unos 190 m, para dibujar un corte de lo que hay debajo (agua, roca, cavidades).</p>
 
 <h3>Cómo funciona, en 4 pasos</h3>
 <ol class="steps4">
@@ -223,7 +224,7 @@ textarea#c-csvta{width:100%;height:120px;font:12px monospace;margin-top:8px}
 
 <section class="panel" id="p-paper" hidden>
 <article class="paper">
-<div class="title">Diseño de un resistivímetro multielectrodo de bajo costo para tomografía de resistividad eléctrica en tendidos de 200 m</div>
+<div class="title">VENUS: resistivímetro multielectrodo de bajo costo para tomografía de resistividad eléctrica en tendidos de 200 m</div>
 <div class="subtitle">Propuesta de diseño, modelado analítico y análisis de costos (sin prototipo construido)</div>
 <div class="byline"><b>Ian A. Sandoval-Valderrábano</b><br><span>Facultad de Ingeniería, Benemérita Universidad Autónoma de Puebla (BUAP) · Puebla, México</span></div>
 <p style="text-align:center;font-family:system-ui,sans-serif;font-size:14px;margin:0 0 14px"><a href="#3d" style="font-weight:600">Ver el modelo 3D interactivo del interior</a> · <a href="#costos" style="font-weight:600">Costos y calculadoras</a></p>

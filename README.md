@@ -1,18 +1,18 @@
-# Resistivímetro multielectrodo de bajo costo para tomografía de resistividad eléctrica (TRE)
+# VENUS: resistivímetro multielectrodo de bajo costo para tomografía de resistividad eléctrica (TRE)
 
-Propuesta de diseño, modelado analítico y análisis de costos de un resistivímetro de un canal y 48 electrodos para tendidos simples de unos 200 m. **No se construyó hardware**: todas las cifras de desempeño son estimaciones analíticas pendientes de validación en banco y en campo.
+**VENUS** es la propuesta de diseño, modelado analítico y análisis de costos de un resistivímetro de un canal y 48 electrodos para tendidos simples de unos 200 m. **No se construyó hardware**: todas las cifras de desempeño son estimaciones analíticas pendientes de validación en banco y en campo.
 
 **Autor:** Ian A. Sandoval-Valderrábano, Facultad de Ingeniería, Benemérita Universidad Autónoma de Puebla (BUAP).
 
-![Interior de la maleta Pelican 1450 en el modelo 3D](imagenes/modelo_3d_interior.png)
+![Interior de la maleta Pelican 1450 de VENUS en el modelo 3D](imagenes/modelo_3d_interior.png)
 
 ## Contenido
-- [`paper/Resistivimetro_TRE_IEEE.pdf`](paper/Resistivimetro_TRE_IEEE.pdf): documento en estilo IEEE (6 páginas; no es la plantilla oficial).
+- [`paper/VENUS_Resistivimetro_TRE_IEEE.pdf`](paper/VENUS_Resistivimetro_TRE_IEEE.pdf): documento en estilo IEEE (6 páginas; no es la plantilla oficial).
 - [`interactivo/index.html`](interactivo/index.html): una sola página (ábrela en el navegador, sin internet) con resumen, modelo 3D del interior, calculadora de costos y el paper.
 - [`datos/lista_materiales.csv`](datos/lista_materiales.csv): lista de materiales de 29 líneas con rangos bajo, base y alto, la fuente de cada precio y si es precio visto (V) o estimación (E).
 - [`codigo/presupuesto_senal.py`](codigo/presupuesto_senal.py): reproduce la señal esperada, el número de lecturas, el tiempo y la energía del paper.
 
-## El diseño en breve
+## El diseño de VENUS en breve
 - **Transmisor:** riel de 200 V limitado a 80 mA, con inversión de polaridad cada 0.5 s.
 - **Receptor:** flotante, ADS1262 de 32 bits, aislado con ISO7741 y convertidores aislados.
 - **Conmutación:** 192 canales (48 electrodos × roles A, B, M, N) con 96 PhotoMOS AQW214, controlados por un Raspberry Pi 4B.

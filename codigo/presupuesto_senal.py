@@ -1,4 +1,4 @@
-"""Cálculos analíticos del paper: señal esperada, número de lecturas, tiempo y energía.
+"""VENUS: cálculos analíticos del paper (señal esperada, número de lecturas, tiempo y energía).
 
 Reproduce las tablas y cifras del paper a partir de las fórmulas (terreno homogéneo, sin ruido,
 sin fuga ni resistencia de contacto). No usa dependencias externas.
