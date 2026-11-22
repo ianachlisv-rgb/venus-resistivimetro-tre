@@ -9,7 +9,7 @@ Autor: Ian A. Sandoval-Valderrábano, Facultad de Ingeniería, Benemérita Unive
 - **VENUS-B (básica):** riel de 200 V limitado a 80 mA, conmutación con PhotoMOS. Es la versión de bajo costo.
 - **VENUS-S (suelos secos):** versión reforzada para sitios donde la resistencia de contacto de los electrodos es alta. Es la versión vigente del diseño.
 
-> **Aviso sobre el contenido del repositorio:** este README describe VENUS-S. Los archivos de `paper/`, `interactivo/`, `datos/` y `codigo/` pueden corresponder todavía a VENUS-B (29 líneas de materiales, 6 páginas) hasta que se suba la documentación nueva de VENUS-S (paper de 8 páginas, resumen de una página y página interactiva actualizada).
+> **Aviso sobre el contenido del repositorio:** este README describe VENUS-S. El paper de 8 páginas, el resumen de una página y la página interactiva ya corresponden a VENUS-S. La lista de materiales (`datos/`, 29 líneas) y el script de cálculo (`codigo/`) siguen siendo los de VENUS-B hasta que se actualicen.
 
 ## Qué cambia en VENUS-S
 
@@ -52,10 +52,10 @@ VENUS-S cuesta unas 2.4 veces lo que VENUS-B. Solo 9 de las 33 líneas de materi
 
 ## Contenido del repositorio
 
-- `paper/`: documento en estilo IEEE (no es la plantilla oficial).
+- `paper/`: paper en estilo IEEE de 8 páginas (no es la plantilla oficial) y resumen de una página, ambos de VENUS-S.
 - `interactivo/index.html`: página única con resumen, modelo 3D del interior, calculadora de costos y el paper (ábrela en el navegador, sin internet).
-- `datos/lista_materiales.csv`: lista de materiales con rangos bajo, base y alto, fuente de cada precio y si es precio visto (V) o estimación (E).
-- `codigo/presupuesto_senal.py`: reproduce la señal esperada, el número de lecturas, el tiempo y la energía.
+- `datos/lista_materiales.csv` (todavía VENUS-B): lista de materiales con rangos bajo, base y alto, fuente de cada precio y si es precio visto (V) o estimación (E).
+- `codigo/presupuesto_senal.py` (todavía VENUS-B): reproduce la señal esperada, el número de lecturas, el tiempo y la energía.
 
 ## Licencia
 
