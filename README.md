@@ -1,46 +1,62 @@
 # VENUS: resistivímetro multielectrodo de bajo costo para tomografía de resistividad eléctrica (TRE)
 
-**VENUS** es la propuesta de diseño, modelado analítico y análisis de costos de un resistivímetro de un canal y 48 electrodos para tendidos simples de unos 200 m. **No se construyó hardware**: todas las cifras de desempeño son estimaciones analíticas pendientes de validación en banco y en campo.
+VENUS es la propuesta de diseño, modelado analítico y análisis de costos de un resistivímetro de un canal y 48 electrodos para tendidos simples de unos 200 m. **No se construyó hardware**: todas las cifras de desempeño son estimaciones analíticas pendientes de validación en banco y en campo.
 
-**Autor:** Ian A. Sandoval-Valderrábano, Facultad de Ingeniería, Benemérita Universidad Autónoma de Puebla (BUAP).
+Autor: Ian A. Sandoval-Valderrábano, Facultad de Ingeniería, Benemérita Universidad Autónoma de Puebla (BUAP).
 
-![Interior de la maleta Pelican 1450 de VENUS en el modelo 3D](imagenes/modelo_3d_interior.png)
+## Dos versiones
 
-## Contenido
-- [`paper/VENUS_Resistivimetro_TRE_IEEE.pdf`](paper/VENUS_Resistivimetro_TRE_IEEE.pdf): documento en estilo IEEE (6 páginas; no es la plantilla oficial).
-- [`interactivo/index.html`](interactivo/index.html): una sola página (ábrela en el navegador, sin internet) con resumen, modelo 3D del interior, calculadora de costos y el paper.
-- [`datos/lista_materiales.csv`](datos/lista_materiales.csv): lista de materiales de 29 líneas con rangos bajo, base y alto, la fuente de cada precio y si es precio visto (V) o estimación (E).
-- [`codigo/presupuesto_senal.py`](codigo/presupuesto_senal.py): reproduce la señal esperada, el número de lecturas, el tiempo y la energía del paper.
+- **VENUS-B (básica):** riel de 200 V limitado a 80 mA, conmutación con PhotoMOS. Es la versión de bajo costo.
+- **VENUS-S (suelos secos):** versión reforzada para sitios donde la resistencia de contacto de los electrodos es alta. Es la versión vigente del diseño.
 
-## El diseño de VENUS en breve
-- **Transmisor:** riel de 200 V limitado a 80 mA, con inversión de polaridad cada 0.5 s.
-- **Receptor:** flotante, ADS1262 de 32 bits, aislado con ISO7741 y convertidores aislados.
-- **Conmutación:** 192 canales (48 electrodos × roles A, B, M, N) con 96 PhotoMOS AQW214, controlados por un Raspberry Pi 4B.
-- **Energía y carcasa:** batería LiFePO4 de 12.8 V y 20 Ah (256 Wh) en una maleta Pelican 1450 (IP67).
-- **Arreglos:** Wenner, Wenner-Schlumberger y dipolo-dipolo, con secuencias exportables a ResIPy y pyGIMLi.
+> **Aviso sobre el contenido del repositorio:** este README describe VENUS-S. Los archivos de `paper/`, `interactivo/`, `datos/` y `codigo/` pueden corresponder todavía a VENUS-B (29 líneas de materiales, 6 páginas) hasta que se suba la documentación nueva de VENUS-S (paper de 8 páginas, resumen de una página y página interactiva actualizada).
 
-## Resultados (estimaciones)
-| Concepto | Valor |
+## Qué cambia en VENUS-S
+
+| Bloque | VENUS-B | VENUS-S |
+|---|---|---|
+| Transmisor | 200 V, 80 mA | elevador de 45 a 390 V, 100 W; puente H con MOSFET de 650 V; lazo de corriente hasta 250 mA |
+| Conmutación | PhotoMOS (96 piezas) | 192 relevadores reed de alto voltaje, con regla de conmutación en frío para los electrodos de corriente |
+| Receptor | ADS1262 | ADS1262 con buffers OPA2188 (impedancia de entrada de unos 1 GΩ) |
+| Aislamiento y seguridad | aislamiento digital | aislamiento ISO7741, interlocks de alto voltaje, paro de emergencia, llave, baliza y monitor de fugas |
+| Cable y conectores | cable estándar | cable de 1 kV y conectores de 500 V o más |
+| Energía y carcasa | LiFePO4 12.8 V, 20 Ah; Pelican 1450 | LiFePO4 12.8 V, 30 Ah; Pelican 1550 |
+
+## Resultados (estimaciones analíticas)
+
+Corriente inyectada con un contacto de 10 kΩ por electrodo:
+
+| Caso | Corriente |
 |---|---|
-| Señal más débil del plan (dipolo-dipolo, a = 16 m, n = 6, 20 Ωm, 50 mA) | 59 µV |
-| Wenner completo (360 lecturas, un canal) | unos 13 min |
-| Autonomía con 256 Wh (peor caso, 18.5 W) | unas 14 h |
-| Instrumento sin tendido | unos 1 114 USD (800–1 778) |
-| Sistema completo con cable y electrodos | unos 2 866 USD (1 584–4 234) |
+| VENUS-B | unos 10 mA |
+| VENUS-S, solo con más voltaje | unos 19.5 mA |
+| VENUS-S, con tratamiento del contacto (supuesto: la resistencia baja a una quinta parte) | unos 97.5 mA |
 
-Solo 12 de las 29 líneas de la lista tienen precio visto en un distribuidor (65 % del costo base); las otras 17 son estimaciones del autor.
+Con la configuración de VENUS-S, un Wenner completo (360 lecturas, un canal) toma unos 14 min y los tres arreglos juntos (1 857 lecturas) unos 71 min.
+
+**Lectura honesta del resultado:** subir solo el voltaje apenas duplica la corriente cuando el contacto limita. La mejora grande viene de bajar la resistencia de contacto (doble estaca con bentonita y sal) y de eliminar errores por fuga de los interruptores y por el divisor de entrada. El factor de tratamiento (resistencia de contacto por 0.2) es un supuesto que falta validar en campo.
+
+## Costo estimado
+
+| Concepto | VENUS-B | VENUS-S |
+|---|---|---|
+| Sistema completo | unos 2 866 USD (1 584 a 4 234) | unos 6 950 USD (3 100 a 10 850) |
+
+VENUS-S cuesta unas 2.4 veces lo que VENUS-B. Solo 9 de las 33 líneas de materiales de VENUS-S tienen precio visto en un distribuidor; el resto son estimaciones del autor. Quedan fuera impuestos, envío, repuestos y la tableta del operador. El costo de desarrollo (ingeniería, validación, certificación) es mucho mayor que el de las piezas.
 
 ## Límites que conviene leer
-- **Riesgo principal:** la fuga de los PhotoMOS en estado abierto (hasta 1 µA según la ficha) puede dar hasta 2 mV con una resistencia de contacto de 2 kΩ, más que la señal del caso más débil. No se midió; el paper propone pruebas y una variante con relés reed.
-- **El desarrollo domina el costo:** solo la ingeniería (550–1 010 horas a 25–80 USD/h, supuesto del autor) costaría entre 13 750 y 80 800 USD. Un equipo propio solo se justifica si se fabrican varias unidades, si se necesita una función que no existe comercialmente o si el tiempo cuenta como aprendizaje.
-- **Precios:** vistos en listados de distribuidores en noviembre de 2026 y sujetos a cambio. Quedan fuera impuestos, envío, repuestos y la tableta del operador.
-- **Seguridad:** un riel de 200 V CC está por encima del umbral de 60 V CC de la norma IEC 61010-1. Las medidas del paper (paro de emergencia, llave, fusibles, sangrador) deben revisarse con un laboratorio y con personal calificado antes de construir nada.
 
-## Uso
-```
-python codigo/presupuesto_senal.py     # imprime la tabla de señales, lecturas, tiempos y energía
-```
-Para ver el modelo 3D y la calculadora, abre `interactivo/index.html` en un navegador moderno.
+- Todo es analítico: no hay mediciones de banco ni de campo.
+- Supuestos por validar: factor de tratamiento del contacto (0.2, rango de 0.1 a 0.5), fuga de los relevadores reed (unos 20 pA), confiabilidad del elevador de 100 W y que los contactos abiertos resistan 800 V o más.
+- **Seguridad:** VENUS-S trabaja hasta 390 V, por encima del umbral de 60 V CC de la norma IEC 61010-1. Las medidas de seguridad del diseño deben revisarse con un laboratorio y con personal calificado antes de construir nada.
+
+## Contenido del repositorio
+
+- `paper/`: documento en estilo IEEE (no es la plantilla oficial).
+- `interactivo/index.html`: página única con resumen, modelo 3D del interior, calculadora de costos y el paper (ábrela en el navegador, sin internet).
+- `datos/lista_materiales.csv`: lista de materiales con rangos bajo, base y alto, fuente de cada precio y si es precio visto (V) o estimación (E).
+- `codigo/presupuesto_senal.py`: reproduce la señal esperada, el número de lecturas, el tiempo y la energía.
 
 ## Licencia
-El código, la página interactiva y la lista de materiales están bajo licencia MIT (ver [`LICENSE`](LICENSE)). El texto y las figuras del paper son del autor. La página interactiva incluye [three.js](https://threejs.org) (licencia MIT, © los autores de three.js). Las marcas y números de parte pertenecen a sus fabricantes.
+
+El código, la página interactiva y la lista de materiales están bajo licencia MIT (ver LICENSE). El texto y las figuras del paper son del autor. La página interactiva incluye three.js (licencia MIT, © los autores de three.js). Las marcas y números de parte pertenecen a sus fabricantes.
